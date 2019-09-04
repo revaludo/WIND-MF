@@ -5,9 +5,7 @@ cursor=db.cursor()
 
 sql = "select  userid,poiid,city from flickr_china_PDBSCAN  where poiid is not null group by userid,poiid"
 try:
-    # 执行SQL语句
     cursor.execute(sql)
-    # 获取所有记录列表
     results = cursor.fetchall()
     for row in results:
         userid = row[0]
@@ -17,9 +15,7 @@ try:
         #        (userid, poiid))
         sql = "select takentime from flickr_china_PDBSCAN  where  userid ='%s' and poiid='%d' order by takentime" % (userid, poiid)
         try:
-            # 执行SQL语句
             cursor.execute(sql)
-            # 获取所有记录列表
             results = cursor.fetchall()
             tms=[]
             for row in results:
@@ -75,6 +71,4 @@ try:
 
 except Exception as e:
     print (e)
-
-# 关闭数据库连接
 db.close()
